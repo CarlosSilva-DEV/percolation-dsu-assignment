@@ -91,6 +91,9 @@ public class Percolation {
 
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
+    	validate(row, col);
+    	int i = xyTo1D(row, col);
+    	return backwash.find(i) == backwash.find(vTop); // compara se o nó raiz de i e vTop são iguais
     }
 
     // returns the number of open sites

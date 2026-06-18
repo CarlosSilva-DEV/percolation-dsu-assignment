@@ -98,6 +98,7 @@ public class Percolation {
 
     // returns the number of open sites
     public int numberOfOpenSites() {
+    	return openSitesCount;
     }
 
     // does the system percolate?

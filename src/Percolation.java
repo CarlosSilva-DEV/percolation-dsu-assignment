@@ -24,6 +24,18 @@ public class Percolation {
     	this.backwash = new WeightedQuickUnionUF(n * n + 1); // inicializado com 1 nó extra (apenas topo, para evitar backwash)
     }
     
+    private void validate(int row, int col) {
+    	if (row < 1 || row > n || col < 1 || col > n) {
+    		throw new IllegalArgumentException("The values of row and col should be between 1 and " + n 
+    				+ ", input: [" + row + ", " + col + "]");
+    	}
+    }
+    
+    // converte índice 2D (linha, coluna) para índice 1D (array)
+    private int xyTo1D(int row, int col) {
+    	return (row - 1) * n + (col - 1);
+    }
+
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
     }

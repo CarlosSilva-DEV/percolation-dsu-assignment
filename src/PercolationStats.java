@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 	private static final double CONFIDENCE = 1.96;
@@ -37,6 +38,7 @@ public class PercolationStats {
 
     // sample mean of percolation threshold
     public double mean() {
+    	return StdStats.mean(thresholds);
     }
 
     // sample standard deviation of percolation threshold

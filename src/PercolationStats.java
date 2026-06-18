@@ -60,5 +60,18 @@ public class PercolationStats {
     }
     
     public static void main(String[] args) {
+    	if (args.length != 2) {
+    		System.out.println("Use the default args structure: <n> <trials>");
+    		return;
+    	}
+    	
+    	int n = Integer.parseInt(args[0]);
+    	int trials = Integer.parseInt(args[1]);
+    	
+    	PercolationStats stats = new PercolationStats(n, trials);
+    	
+    	System.out.println("mean = " + stats.mean());
+    	System.out.println("stddev = " + stats.stddev());
+    	System.out.println("95% confidence interval = [" + stats.confidenceLo() + ", " + stats.confidenceHi() + "]");
     }
 }

@@ -103,5 +103,6 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
+    	return uf.find(vTop) == uf.find(vBottom); // compara se o nó raiz de vTop e vBottom são iguais (estão conectados)
     }
 }

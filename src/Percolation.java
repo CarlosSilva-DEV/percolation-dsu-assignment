@@ -1,6 +1,27 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
+	private final WeightedQuickUnionUF uf; // estrutura de dados com nós do topo e baixo
+	private final WeightedQuickUnionUF backwash; // estrutura de dados apenas com nó do topo
+	private final boolean[] states; // guarda os estados de cada site (true = aberto, false = fechado)
+	private int openSitesCount;
+	private final int vTop; // nó do topo
+	private final int vBottom; // nó de baixo
+	private final int n;
+
+	// creates n-by-n grid, with all sites initially blocked
+    public Percolation(int n) {
+    	if (n <= 0) {
+    		throw new IllegalArgumentException("The value of n should be greater than 0, input: " + n);
+    	}
+    	
+    	this.n = n;
+    	this.states = new boolean[n * n];
+    	this.openSitesCount = 0;
+    	this.vTop = n * n;
+    	this.vBottom = n * n + 1;
+    	this.uf = new WeightedQuickUnionUF(n * n + 2); // inicializado com 2 nós extras (topo e baixo)
+    	this.backwash = new WeightedQuickUnionUF(n * n + 1); // inicializado com 1 nó extra (apenas topo, para evitar backwash)
     }
     
     // opens the site (row, col) if it is not open already

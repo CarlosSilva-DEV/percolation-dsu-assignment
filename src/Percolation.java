@@ -38,10 +38,55 @@ public class Percolation {
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
+    	validate(row, col);
+    	
+    	int i = xyTo1D(row, col);
+    	
+    	if (states[i]) { // se i já estiver aberto, retorno vazio
+    		return;
+    	}
+    	
+    	states[i] = true;
+    	openSitesCount++;
+    	
+    	if (row == 1) { // se estiver na primeira linha, conecta com o topo virtual
+    		uf.union(i, vTop);
+    		backwash.union(i, vTop);
+    	}
+    	
+    	if (row == n) { // se estiver na última linha, conecta com o fundo virtual
+    		uf.union(i, vBottom);
+    	}
+    	
+    	if (row > 1 && isOpen(row - 1, col)) { // conecta com o vizinho de cima se estiver aberto
+    		int neighbor = xyTo1D(row - 1, col);
+    		uf.union(i, neighbor);
+    		backwash.union(i, neighbor);
+    	}
+    	
+    	if (row < n && isOpen(row + 1, col)) { // conecta com o vizinho de baixo se estiver aberto
+    		int neighbor = xyTo1D(row + 1, col);
+    		uf.union(i, neighbor);
+    		backwash.union(i, neighbor);
+    	}
+    	
+    	if (col > 1 && isOpen(row, col - 1)) {
+    		int neighbor = xyTo1D(row, col - 1);
+        	uf.union(i, neighbor);
+        	backwash.union(i, neighbor);
+    	}
+    	
+    	if (col < n && isOpen(row, col + 1)) {
+    		int neighbor = xyTo1D(row, col + 1);
+        	uf.union(i, neighbor);
+        	backwash.union(i, neighbor);
+    	}
     }
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
+    	validate(row, col);
+    	return states[xyTo1D(row, col)];
     }
 
     // is the site (row, col) full?

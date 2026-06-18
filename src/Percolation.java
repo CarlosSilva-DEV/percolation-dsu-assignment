@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -104,5 +106,38 @@ public class Percolation {
     // does the system percolate?
     public boolean percolates() {
     	return uf.find(vTop) == uf.find(vBottom); // compara se o nó raiz de vTop e vBottom são iguais (estão conectados)
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter the value of n: ");
+		int n = input.nextInt();
+		
+		Percolation p = new Percolation(n);
+		
+		System.out.println("\n\nBEFORE OPENING COLUMN 3");
+		System.out.println("-----------------------");
+		System.out.println("Open sites: " + p.numberOfOpenSites());
+		System.out.println("Percolates?: " + p.percolates());
+		
+		for (int row = 1; row <= n; row ++) {
+			p.open(row, 3);
+		}
+		
+		System.out.println("\nAFTER OPENING COLUMN 3");
+		System.out.println("----------------------");
+		System.out.println("Open sites: " + p.numberOfOpenSites());
+		System.out.println("Percolates?: " + p.percolates());
+		System.out.println("Is the site [3,3] full?: " + p.isFull(3, 3));
+		System.out.println("Is the site [1,1] full?: " + p.isFull(1, 1));
+		
+		try {
+			p.open(0, 1);
+		} catch (IllegalArgumentException exception) {
+			System.out.println("Expected exception succesfully thrown: " + exception.getMessage());
+		}
+		
+		input.close();
     }
 }

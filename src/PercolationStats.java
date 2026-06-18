@@ -43,6 +43,10 @@ public class PercolationStats {
 
     // sample standard deviation of percolation threshold
     public double stddev() {
+    	if (trials == 1) {
+    		return Double.NaN; // desvio padrão é indefinido para 1 único trial
+    	}
+    	return StdStats.stddev(thresholds);
     }
 
     // low endpoint of 95% confidence interval

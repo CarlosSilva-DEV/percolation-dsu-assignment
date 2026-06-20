@@ -24,7 +24,7 @@
     <img src="https://custom-icon-badges.demolab.com/badge/monte%20carlo%20simulation-grey.svg?style=for-the-badge&logo=graph">
 </div>
 
-<!-- INSERIR O VÍDEO DE DEMONSTRAÇÃO IGUAL NVIM-JAVA -->
+https://github.com/user-attachments/assets/0dd32c54-4ed8-40d4-b283-327ed1ddd235
 
 <br>
 
